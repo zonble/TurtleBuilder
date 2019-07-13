@@ -2,22 +2,29 @@ import UIKit
 import TurtleBuilder
 import TurtleView
 
-class TurtleViewController: UIViewController {
+class AnimatedTurtleViewController: UIViewController {
 	@TurtleBuilder
 	func builder() -> [Command] {
 		pass()
 		pass()
 	}
 
-	var turtleView: TurtleView!
-
+	var turtleView: AnimatedTurtleView!
+	
 	override func loadView() {
 		self.view = UIView()
 		self.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		self.view.backgroundColor = UIColor.white
-		turtleView = TurtleView(frame: self.view.bounds, builder: self.builder)
+		turtleView = AnimatedTurtleView(frame: self.view.bounds, builder: self.builder)
 		turtleView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		self.view.addSubview(turtleView)
+	}
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
+			self.turtleView.animate()
+		}
 	}
 
 	override func viewDidLayoutSubviews() {
@@ -25,7 +32,7 @@ class TurtleViewController: UIViewController {
 	}
 }
 
-class StarViewController: TurtleViewController {
+class AnimatedStarViewController: AnimatedTurtleViewController {
 	@TurtleBuilder
 	override func builder() -> [Command] {
 		forward(50)
@@ -43,7 +50,7 @@ class StarViewController: TurtleViewController {
 	}
 }
 
-class EmitViewController: TurtleViewController {
+class AnimatedEmitViewController: AnimatedTurtleViewController {
 	@TurtleBuilder
 	override func builder() -> [Command] {
 		loop(18) {
@@ -56,7 +63,7 @@ class EmitViewController: TurtleViewController {
 	}
 }
 
-class StarAndEmitViewController: TurtleViewController {
+class AnimatedStarAndEmitViewController: AnimatedTurtleViewController {
 	@TurtleBuilder
 	override func builder() -> [Command] {
 		forward(50)
@@ -82,7 +89,7 @@ class StarAndEmitViewController: TurtleViewController {
 	}
 }
 
-class WaveViewController: TurtleViewController {
+class AnimatedWaveViewController: AnimatedTurtleViewController {
 	@TurtleBuilder
 	override func builder() -> [Command] {
 		left(180)
@@ -100,4 +107,3 @@ class WaveViewController: TurtleViewController {
 		penUp()
 	}
 }
-

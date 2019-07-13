@@ -15,42 +15,82 @@ class ViewController: UITableViewController {
 		switch section {
 		case 0:
 			return 4
+		case 1:
+			return 4
 		default:
 			return 0
+		}
+	}
+
+	override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+		switch section {
+		case 0:
+			return "Still"
+		case 1:
+			return "Animated"
+		default:
+			return nil
 		}
 	}
 
 	override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 		cell.accessoryType = .disclosureIndicator
-		switch (indexPath.section, indexPath.row) {
-		case (0, 0):
-			cell.textLabel?.text = "Draw a star"
-		case (0, 1):
-			cell.textLabel?.text = "Draw emitting lines"
-		case (0, 2):
-			cell.textLabel?.text = "Draw a star and emitting lines"
-		case (0, 3):
-			cell.textLabel?.text = "Draw a wave"
-		default:
-			break
-		}
+		let text: String? = {
+			switch (indexPath.section, indexPath.row) {
+			case (0, 0):
+				return "Draw a star"
+			case (0, 1):
+				return "Draw emitting lines"
+			case (0, 2):
+				return "Draw a star and emitting lines"
+			case (0, 3):
+				return "Draw a wave"
+			case (1, 0):
+				return "Draw a star"
+			case (1, 1):
+				return "Draw emitting lines"
+			case (1, 2):
+				return "Draw a star and emitting lines"
+			case (1, 3):
+				return "Draw a wave"
+
+			default:
+				return nil
+			}
+		}()
+		cell.textLabel?.text = text
 		return cell
 	}
 
 	override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		switch (indexPath.section, indexPath.row) {
-		case (0, 0):
-			navigationController?.pushViewController(StarViewController(), animated: true)
-		case (0, 1):
-			navigationController?.pushViewController(EmitViewController(), animated: true)
-		case (0, 2):
-			navigationController?.pushViewController(StarAndEmitViewController(), animated: true)
-		case (0, 3):
-			navigationController?.pushViewController(WaveViewController(), animated: true)
-		default:
-			break
+		let contoller:UIViewController? = {
+			switch (indexPath.section, indexPath.row) {
+			case (0, 0):
+				return StarViewController()
+			case (0, 1):
+				return EmitViewController()
+			case (0, 2):
+				return StarAndEmitViewController()
+			case (0, 3):
+				return WaveViewController()
+			case (1, 0):
+				return AnimatedStarViewController()
+			case (1, 1):
+				return AnimatedEmitViewController()
+			case (1, 2):
+				return AnimatedStarAndEmitViewController()
+			case (1, 3):
+				return AnimatedWaveViewController()
+			default:
+				return nil
+			}
+		}()
+		if let contoller = contoller {
+			self.navigationController?.pushViewController(contoller, animated: true)
 		}
 	}
 }
+
+
 

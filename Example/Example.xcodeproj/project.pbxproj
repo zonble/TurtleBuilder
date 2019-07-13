@@ -14,6 +14,7 @@
 		D415D85422D9988900DEBD00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D415D85222D9988900DEBD00 /* LaunchScreen.storyboard */; };
 		D415D86222D99C2B00DEBD00 /* TurtleBuilder in Frameworks */ = {isa = PBXBuildFile; productRef = D415D86122D99C2B00DEBD00 /* TurtleBuilder */; };
 		D45A485F22D99FA0006F6AA6 /* TurtleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A485E22D99FA0006F6AA6 /* TurtleViewController.swift */; };
+		D45A486122D9B191006F6AA6 /* AnimatedTurtleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45A486022D9B191006F6AA6 /* AnimatedTurtleViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		D415D85522D9988900DEBD00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D415D85B22D998BE00DEBD00 /* TurtleBuilder */ = {isa = PBXFileReference; lastKnownFileType = folder; name = TurtleBuilder; path = ..; sourceTree = "<group>"; };
 		D45A485E22D99FA0006F6AA6 /* TurtleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TurtleViewController.swift; sourceTree = "<group>"; };
+		D45A486022D9B191006F6AA6 /* AnimatedTurtleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedTurtleViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				D415D84922D9988500DEBD00 /* SceneDelegate.swift */,
 				D415D84B22D9988500DEBD00 /* ViewController.swift */,
 				D45A485E22D99FA0006F6AA6 /* TurtleViewController.swift */,
+				D45A486022D9B191006F6AA6 /* AnimatedTurtleViewController.swift */,
 				D415D85022D9988900DEBD00 /* Assets.xcassets */,
 				D415D85222D9988900DEBD00 /* LaunchScreen.storyboard */,
 				D415D85522D9988900DEBD00 /* Info.plist */,
@@ -155,6 +158,7 @@
 			files = (
 				D45A485F22D99FA0006F6AA6 /* TurtleViewController.swift in Sources */,
 				D415D84C22D9988500DEBD00 /* ViewController.swift in Sources */,
+				D45A486122D9B191006F6AA6 /* AnimatedTurtleViewController.swift in Sources */,
 				D415D84822D9988500DEBD00 /* AppDelegate.swift in Sources */,
 				D415D84A22D9988500DEBD00 /* SceneDelegate.swift in Sources */,
 			);
