@@ -78,4 +78,18 @@ let turtleView = AnimatedTurtleView(frame: self.view.bounds) {
 
 Then call `turtleView.animate()` to start the animation.
 
+## Known Issues
+
+If you use variables in the commands within the `loop` command, we only take the values once. For example, if you have code as following:
+
+``` swift
+loop(5) {
+   move(Int(arc4random() % 50))
+   forward(Int(arc4random() % 50))
+}
+```
+
+We do not generate new randrom numbers in each run of the loop, and the values sent to the commands remain identical.
+
+
 Patches are welcome. Enjoy! 🐢
