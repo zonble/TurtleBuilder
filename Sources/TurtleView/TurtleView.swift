@@ -9,16 +9,21 @@ import TurtleBuilder
 
 public class TurtleView: PlatformView {
 	var turtle: Turtle
-	var strokeColor: PlatformColor = PlatformColor.green {
-		didSet {
-			#if os(macOS)
-			self.setNeedsDisplay(self.bounds)
-			#endif
-			#if os(iOS)
-			self.setNeedsDisplay()
-			#endif
-		}
+	func update() {
+		#if os(macOS)
+		self.setNeedsDisplay(self.bounds)
+		#endif
+		#if os(iOS)
+		self.setNeedsDisplay()
+		#endif
 	}
+	var strokeColor: PlatformColor = PlatformColor.green {
+		didSet { update() }
+	}
+	public var fillColor: UIColor = UIColor.clear {
+		didSet { update() }
+	}
+
 	public init(frame: CGRect, turtle: Turtle) {
 		self.turtle = turtle
 		super.init(frame: frame)
@@ -46,7 +51,7 @@ public class TurtleView: PlatformView {
 
 		let center = CGPoint(x: self.bounds.width / 2, y:self.bounds.height / 2)
 		strokeColor.setStroke()
-		for sequence in turtle.points {
+		for sequence in turtle.lines {
 			if sequence.count < 2 {
 				continue
 			}

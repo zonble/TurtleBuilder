@@ -7,7 +7,7 @@ final class TurtleBuilderTests: XCTestCase {
 			pass()
 			pass()
 		}
-		XCTAssertTrue(t.points.count == 0)
+		XCTAssertTrue(t.lines.count == 0)
 	}
 
 	func testTurtleNoPenDown() {
@@ -15,7 +15,7 @@ final class TurtleBuilderTests: XCTestCase {
 			forward(10)
 			forward(10)
 		}
-		XCTAssertTrue(t.points.count == 0)
+		XCTAssertTrue(t.lines.count == 0)
 	}
 
 	func testTurtleWithOneLine() {
@@ -24,9 +24,9 @@ final class TurtleBuilderTests: XCTestCase {
 			forward(10)
 			penUp()
 		}
-		XCTAssertTrue(t.points.count == 1)
-		XCTAssertTrue(t.points[0][0] == (Double(0), Double(0)))
-		XCTAssertTrue(t.points[0][1] == (Double(10), Double(0)))
+		XCTAssertTrue(t.lines.count == 1)
+		XCTAssertTrue(t.lines[0][0] == (Double(0), Double(0)))
+		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)))
 	}
 
 //	func testTurtleIf() {
@@ -51,8 +51,8 @@ final class TurtleBuilderTests: XCTestCase {
 			}
 			penUp()
 		}
-		XCTAssertTrue(t.points.count == 1)
-		XCTAssertTrue(t.points.first?.count == 11)
+		XCTAssertTrue(t.lines.count == 1)
+		XCTAssertTrue(t.lines.first?.count == 11)
 	}
 
 	func testTurtleLoop2() {
@@ -65,8 +65,8 @@ final class TurtleBuilderTests: XCTestCase {
 			}
 			pass()
 		}
-		XCTAssertTrue(t.points.count == 10)
-		for i in t.points {
+		XCTAssertTrue(t.lines.count == 10)
+		for i in t.lines {
 			XCTAssertTrue(i.count == 2)
 		}
 	}
@@ -82,8 +82,8 @@ final class TurtleBuilderTests: XCTestCase {
 			}
 			pass()
 		}
-		XCTAssertTrue(t.points.count == 10)
-		for i in t.points {
+		XCTAssertTrue(t.lines.count == 10)
+		for i in t.lines {
 			XCTAssertTrue(i.first?.0 == Double(0))
 			XCTAssertTrue(i.first?.1 == Double(0))
 		}
@@ -97,9 +97,9 @@ final class TurtleBuilderTests: XCTestCase {
 			forward(10)
 			penUp()
 		}
-		XCTAssertTrue(t.points.count == 1)
-		XCTAssertTrue(t.points[0][0] == (Double(0), Double(0)) )
-		XCTAssertTrue(t.points[0][1] == (Double(10), Double(0)) )
+		XCTAssertTrue(t.lines.count == 1)
+		XCTAssertTrue(t.lines[0][0] == (Double(0), Double(0)) )
+		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)) )
 	}
 
 	func testTurn2() {
@@ -110,9 +110,9 @@ final class TurtleBuilderTests: XCTestCase {
 			forward(10)
 			penUp()
 		}
-		XCTAssertTrue(t.points.count == 1)
-		XCTAssertTrue(t.points[0][0] == (Double(0), Double(0)) )
-		XCTAssertTrue(t.points[0][1] == (Double(10), Double(0)) )
+		XCTAssertTrue(t.lines.count == 1)
+		XCTAssertTrue(t.lines[0][0] == (Double(0), Double(0)) )
+		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)) )
 	}
 
 	func testMacro() {
@@ -125,9 +125,9 @@ final class TurtleBuilderTests: XCTestCase {
 			playMacro("forward")
 			penUp()
 		}
-		XCTAssertTrue(t.points.count == 1)
-		XCTAssertTrue(t.points[0][0] == (Double(0), Double(0)) )
-		XCTAssertTrue(t.points[0][1] == (Double(10), Double(0)) )
+		XCTAssertTrue(t.lines.count == 1)
+		XCTAssertTrue(t.lines[0][0] == (Double(0), Double(0)) )
+		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)) )
 	}
 
     static var allTests = [

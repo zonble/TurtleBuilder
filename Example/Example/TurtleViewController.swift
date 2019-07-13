@@ -101,3 +101,47 @@ class WaveViewController: TurtleViewController {
 	}
 }
 
+class MultipleStarsViewController: TurtleViewController {
+	@TurtleBuilder
+	override func builder() -> [TurtleCommand] {
+		setMacro("star") {
+			forward(50)
+			right(90)
+			forward(15)
+			left(90)
+			penDown()
+			loop(9) {
+				turn(140)
+				forward(30)
+				turn(-100)
+				forward(30)
+			}
+			penUp()
+		}
+
+		center(); resetDirection()
+		left(90)
+		forward(200)
+		playMacro("star")
+
+		center(); resetDirection()
+		left(90)
+		forward(100)
+		playMacro("star")
+
+		center()
+		playMacro("star")
+
+		center(); resetDirection()
+		right(90)
+		forward(100)
+		playMacro("star")
+
+		center(); resetDirection()
+		right(90)
+		forward(200)
+		playMacro("star")
+	}
+}
+
+

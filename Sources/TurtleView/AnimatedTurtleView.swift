@@ -3,7 +3,7 @@ import UIKit
 import TurtleBuilder
 
 fileprivate protocol AnimationLooperDelegate: class {
-	func turtleAnimatorDidEnd( _ animator: TurtleAnimator)
+	func turtleAnimatorDidEnd(_ animator: TurtleAnimator)
 }
 
 fileprivate class TurtleAnimator: NSObject, CAAnimationDelegate {
@@ -26,7 +26,7 @@ fileprivate class TurtleAnimator: NSObject, CAAnimationDelegate {
 			delegate?.turtleAnimatorDidEnd(self)
 		}
 	}
-	
+
 	public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 		layers[index].removeAllAnimations()
 		if index < layers.count - 1 {
@@ -42,7 +42,7 @@ fileprivate class TurtleAnimator: NSObject, CAAnimationDelegate {
 		animation.delegate = self
 		animation.duration = 3.0 / Double(layers.count)
 		layer.strokeEnd = 1.0
-		layer.add(animation, forKey:nil)
+		layer.add(animation, forKey: nil)
 	}
 }
 
@@ -56,9 +56,11 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 			}
 		}
 	}
-	public override var frame: CGRect {
+	public var fillColor: UIColor = UIColor.clear {
 		didSet {
-			self.shapeLayers = makeLayers()
+			self.shapeLayers.forEach { layer in
+				layer.fillColor = fillColor.cgColor
+			}
 		}
 	}
 
@@ -69,9 +71,10 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 		self.shapeLayers = makeLayers()
 	}
 
-	public convenience init(frame: CGRect, @TurtleBuilder builder:()-> [TurtleCommand]) {
-		let turtle = Turtle(builder:builder)
-		self.init(frame:frame, turtle: turtle )
+	public convenience init(frame: CGRect,
+							@TurtleBuilder builder:()-> [TurtleCommand]) {
+		let turtle = Turtle(builder: builder)
+		self.init(frame: frame, turtle: turtle)
 	}
 
 	required init?(coder: NSCoder) {
@@ -92,9 +95,9 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 	}
 
 	private func makeLayers() -> [CAShapeLayer] {
-		let center = CGPoint(x: self.bounds.width / 2, y:self.bounds.height / 2)
+		let center = CGPoint(x: self.bounds.width / 2, y: self.bounds.height / 2)
 		var layers = [CAShapeLayer]()
-		for sequence in turtle.points {
+		for sequence in turtle.lines {
 			if sequence.count < 2 {
 				continue
 			}
@@ -108,7 +111,7 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 			layer.frame = self.bounds
 			layer.path = path.cgPath
 			layer.strokeColor = strokeColor.cgColor
-			layer.fillColor = UIColor.clear.cgColor
+			layer.fillColor = fillColor.cgColor
 			layer.lineWidth = 3
 			layers.append(layer)
 		}
@@ -131,5 +134,11 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 	fileprivate func turtleAnimatorDidEnd(_ animationLooper: TurtleAnimator) {
 		self.animator = nil
 	}
+
+	public func rebuildLayers() {
+		self.shapeLayers = makeLayers()
+	}
+
 }
+
 
