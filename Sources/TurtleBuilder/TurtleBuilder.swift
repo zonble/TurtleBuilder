@@ -16,7 +16,7 @@ public enum TurtleCommand {
 	/// Move forward.
 	case forward(Int)
 	/// Do a looping.
-	case loop(UInt, [TurtleCommand])
+	case loop(Int, [TurtleCommand])
 	/// Set a macro.
 	case setMacro(String, [TurtleCommand])
 	/// Play a macro.
@@ -59,7 +59,7 @@ public func forward(_ length:Int) -> TurtleCommand { .forward(length) }
 /// Run a loop.
 /// - Parameter repeatCount: How many times do we repeat.
 /// - Parameter builder: The commands to run.
-public func loop(_ repeatCount: UInt, @TurtleBuilder builder:()-> [TurtleCommand]) -> TurtleCommand {
+public func loop(_ repeatCount: Int, @TurtleBuilder builder:()-> [TurtleCommand]) -> TurtleCommand {
 	.loop(repeatCount, builder())
 }
 
@@ -76,7 +76,6 @@ public func playMacro(_ name: String) -> TurtleCommand {
 	.playMacro(name)
 }
 
-
 @_functionBuilder
 public struct TurtleBuilder {
 
@@ -87,8 +86,16 @@ public struct TurtleBuilder {
 		return .pass
 	}
 
+	public static func buildEither(first commands: [TurtleCommand]) -> TurtleCommand {
+		.loop(1, commands)
+	}
+
+	public static func buildEither(second commands: [TurtleCommand]) -> TurtleCommand {
+		.loop(1, commands)
+	}
+
 	public static func buildBlock(_ commands: TurtleCommand...) -> [TurtleCommand] {
-		return commands
+		commands
 	}
 }
 

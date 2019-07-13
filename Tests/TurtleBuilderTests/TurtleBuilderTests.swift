@@ -29,18 +29,37 @@ final class TurtleBuilderTests: XCTestCase {
 		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)))
 	}
 
-//	func testTurtleIf() {
-//		let t = Turtle {
-//			penDown()
-//			if true {
-//				forward(10)
-//			}
-//			penUp()
-//		}
-//		XCTAssertTrue(t.points.count == 1)
-//		XCTAssertTrue(t.points[0][0] == (Double(0), Double(0)))
-//		XCTAssertTrue(t.points[0][1] == (Double(10), Double(0)))
-//	}
+	func testTurtleIf() {
+		let t = Turtle {
+			penDown()
+			if true {
+				forward(10)
+				pass()
+			} else {
+				pass()
+			}
+			penUp()
+		}
+		XCTAssertTrue(t.lines.count == 1)
+		XCTAssertTrue(t.lines[0][0] == (Double(0), Double(0)))
+		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)))
+	}
+
+	func testTurtleIf2() {
+		let t = Turtle {
+			penDown()
+			if false {
+				pass()
+			} else {
+				forward(10)
+				pass()
+			}
+			penUp()
+		}
+		XCTAssertTrue(t.lines.count == 1)
+		XCTAssertTrue(t.lines[0][0] == (Double(0), Double(0)))
+		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)))
+	}
 
 	func testTurtleLoop1() {
 		let t = Turtle {
@@ -130,15 +149,16 @@ final class TurtleBuilderTests: XCTestCase {
 		XCTAssertTrue(t.lines[0][1] == (Double(10), Double(0)) )
 	}
 
-    static var allTests = [
-        ("testTurtleEmpty", testTurtleEmpty),
-        ("testTurtleWithOneLine", testTurtleWithOneLine),
-//		("testTurtleIf", testTurtleIf),
-        ("testTurtleLoop1", testTurtleLoop1),
-        ("testTurtleLoop2", testTurtleLoop2),
-        ("testTurtleLoopWithCenter", testTurtleLoopWithCenter),
+	static var allTests = [
+		("testTurtleEmpty", testTurtleEmpty),
+		("testTurtleWithOneLine", testTurtleWithOneLine),
+		//		("testTurtleIf", testTurtleIf),
+		("testTurtleLoop1", testTurtleLoop1),
+		("testTurtleLoop2", testTurtleLoop2),
+		("testTurtleLoopWithCenter", testTurtleLoopWithCenter),
 		("testTurn1", testTurn1),
 		("testTurn2", testTurn2),
 		("testMacro", testMacro),
-		]
+	]
 }
+
