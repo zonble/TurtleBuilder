@@ -1,7 +1,7 @@
 language: swift
 osx_image: xcode11
 script: 
-  - swift test
+  - swift package generate-xcodeproj
+  - xcodebuild test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-  
