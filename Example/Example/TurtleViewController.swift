@@ -4,7 +4,7 @@ import TurtleView
 
 class TurtleViewController: UIViewController {
 	@TurtleBuilder
-	func builder() -> [Command] {
+	func builder() -> [TurtleCommand] {
 		pass()
 		pass()
 	}
@@ -27,7 +27,7 @@ class TurtleViewController: UIViewController {
 
 class StarViewController: TurtleViewController {
 	@TurtleBuilder
-	override func builder() -> [Command] {
+	override func builder() -> [TurtleCommand] {
 		forward(50)
 		right(90)
 		forward(15)
@@ -45,7 +45,7 @@ class StarViewController: TurtleViewController {
 
 class EmitViewController: TurtleViewController {
 	@TurtleBuilder
-	override func builder() -> [Command] {
+	override func builder() -> [TurtleCommand] {
 		loop(18) {
 			center()
 			penDown()
@@ -58,7 +58,7 @@ class EmitViewController: TurtleViewController {
 
 class StarAndEmitViewController: TurtleViewController {
 	@TurtleBuilder
-	override func builder() -> [Command] {
+	override func builder() -> [TurtleCommand] {
 		forward(50)
 		right(90)
 		forward(15)
@@ -84,7 +84,7 @@ class StarAndEmitViewController: TurtleViewController {
 
 class WaveViewController: TurtleViewController {
 	@TurtleBuilder
-	override func builder() -> [Command] {
+	override func builder() -> [TurtleCommand] {
 		left(180)
 		forward(150)
 		right(180)

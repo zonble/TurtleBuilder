@@ -69,7 +69,7 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 		self.shapeLayers = makeLayers()
 	}
 
-	public convenience init(frame: CGRect, @TurtleBuilder builder:()-> [Command]) {
+	public convenience init(frame: CGRect, @TurtleBuilder builder:()-> [TurtleCommand]) {
 		let turtle = Turtle(builder:builder)
 		self.init(frame:frame, turtle: turtle )
 	}

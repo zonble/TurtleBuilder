@@ -25,7 +25,7 @@ public class TurtleView: PlatformView {
 		self.backgroundColor = UIColor.clear
 	}
 
-	public convenience init(frame: CGRect, @TurtleBuilder builder:()-> [Command]) {
+	public convenience init(frame: CGRect, @TurtleBuilder builder:()-> [TurtleCommand]) {
 		let turtle = Turtle(builder:builder)
 		self.init(frame:frame, turtle: turtle )
 	}

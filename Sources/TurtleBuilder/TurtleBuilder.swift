@@ -1,6 +1,6 @@
 import Foundation
 
-public enum Command {
+public enum TurtleCommand {
 	/// Does nothing.
 	case pass
 	/// Center the turtle.
@@ -14,65 +14,79 @@ public enum Command {
 	/// Move forward.
 	case forward(Int)
 	/// Do a looping.
-	case loop(UInt, [Command])
+	case loop(UInt, [TurtleCommand])
+	/// Set a macro.
+	case setMacro(String, [TurtleCommand])
+	/// Play a macro.
+	case playMacro(String)
+
 }
 
 public typealias TurtlePoint = (Double, Double)
 
 /// Do nothing.
-public func pass()-> Command { .pass }
+public func pass()-> TurtleCommand { .pass }
 
 /// Center the turtle.
-public func center()-> Command { .center }
+public func center()-> TurtleCommand { .center }
 
 /// Move the turtle without drawing a line.
-public func penUp()-> Command { .penUp }
+public func penUp()-> TurtleCommand { .penUp }
 
 /// Move the turtle with drawing a line.
-public func penDown()-> Command { .penDown }
+public func penDown()-> TurtleCommand { .penDown }
 
 /// Turn to the given angle. It works as `left`.
 /// - Parameter angle: The angle.
-public func turn(_ angle: Int) -> Command { .turn(angle) }
+public func turn(_ angle: Int) -> TurtleCommand { .turn(angle) }
 
 /// Turn left to the given angle.
 /// - Parameter angle: The angle.
-public func left(_ angle: Int) -> Command { .turn(angle) }
+public func left(_ angle: Int) -> TurtleCommand { .turn(angle) }
 
 /// Turn right to the given angle.
 /// - Parameter angle: The angle.
-public func right(_ angle: Int) -> Command { return .turn(angle * -1) }
+public func right(_ angle: Int) -> TurtleCommand { return .turn(angle * -1) }
 
 /// Move forward.
 /// - Parameter length: How long do we move.
-public func forward(_ length:Int) -> Command { return .forward(length) }
+public func forward(_ length:Int) -> TurtleCommand { return .forward(length) }
 
 /// Run a loop.
 /// - Parameter repeatCount: How many times do we repeat.
 /// - Parameter builder: The commands to run.
-public func loop(_ repeatCount: UInt, @TurtleBuilder builder:()-> [Command]) -> Command {
+public func loop(_ repeatCount: UInt, @TurtleBuilder builder:()-> [TurtleCommand]) -> TurtleCommand {
 	return .loop(repeatCount, builder())
 }
+
+public func setMacro(_ name: String, @TurtleBuilder builder:()-> [TurtleCommand]) -> TurtleCommand {
+	return .setMacro(name, builder())
+}
+
+public func playMacro(_ name: String) -> TurtleCommand {
+	return .playMacro(name)
+}
+
 
 @_functionBuilder
 public struct TurtleBuilder {
 
-	public static func buildIf(_ commands: [Command]?) -> Command {
+	public static func buildIf(_ commands: [TurtleCommand]?) -> TurtleCommand {
 		if let commands = commands {
 			return  .loop(1, commands)
 		}
 		return .pass
 	}
 
-	public static func buildBlock(_ commands: Command...) -> [Command] {
+	public static func buildBlock(_ commands: TurtleCommand...) -> [TurtleCommand] {
 		return commands
 	}
 }
 
 public class Turtle {
-	private var commands:[Command]
+	private var commands:[TurtleCommand]
 
-	public init(@TurtleBuilder builder:()-> [Command]) {
+	public init(@TurtleBuilder builder:()-> [TurtleCommand]) {
 		self.commands = builder()
 	}
 
@@ -85,12 +99,15 @@ public class Turtle {
 
 extension Turtle {
 
-	private func exec(_ command: Command, points:inout [[TurtlePoint]],
+	private func exec(_ command: TurtleCommand, points:inout [[TurtlePoint]],
 					  radian: inout Double,
 					  lastPoint: inout TurtlePoint,
-					  isPenDown: inout Bool
+					  isPenDown: inout Bool,
+					  macros: inout [String:[TurtleCommand]]
 		) {
 		switch command {
+		case .pass:
+			break
 		case .penUp:
 			isPenDown = false
 		case .penDown:
@@ -127,11 +144,23 @@ extension Turtle {
 					exec(command, points: &points,
 						 radian: &radian,
 						 lastPoint: &lastPoint,
-						 isPenDown: &isPenDown)
+						 isPenDown: &isPenDown,
+						 macros: &macros)
 				}
 			}
-		case .pass:
-			break
+		case .setMacro(let name, let commands):
+			macros[name] = commands
+		case .playMacro(let name):
+			guard let commands = macros[name] else {
+				break
+			}
+			for command in commands {
+				exec(command, points: &points,
+					 radian: &radian,
+					 lastPoint: &lastPoint,
+					 isPenDown: &isPenDown,
+					 macros: &macros)
+			}
 		}
 	}
 
@@ -140,11 +169,13 @@ extension Turtle {
 		var radian: Double = 0
 		var lastPoint = (Double(0), Double(0))
 		var isPenDown: Bool = false
+		var macros = [String:[TurtleCommand]]()
 		for command in self.commands {
 			exec(command, points: &points,
 				 radian: &radian,
 				 lastPoint: &lastPoint,
-				 isPenDown: &isPenDown)
+				 isPenDown: &isPenDown,
+				 macros: &macros)
 		}
 		return points
 	}
