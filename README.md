@@ -1,5 +1,10 @@
 # TurtleBuilder
 
+[![GitHub release](https://img.shields.io/github/release/zonble/turtlebuilder.svg)]()
+![GitHub top language](https://img.shields.io/github/languages/top/zonble/turtlebuilder.svg)
+[![License](https://img.shields.io/github/license/ethanhuang13/nsattributedstringbuilder.svg)](https://github.com/zonble/turtlebuilder/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/badge/Twitter-%40zonble-blue.svg)](https://twitter.com/zonble)
+
 TurtleBuilder is a [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphics) made on the top of Swift's function builder. It allows you to use a [LOGO](https://en.wikipedia.org/wiki/Logo_(programming_language))-like syntax to create and draw lines in your Swift project.
 
 [![TurtleBuilder Example](http://img.youtube.com/vi/mPF4nlYp-1c/0.jpg)](http://www.youtube.com/watch?v=mPF4nlYp-1c)
