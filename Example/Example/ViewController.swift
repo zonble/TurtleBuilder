@@ -14,9 +14,9 @@ class ViewController: UITableViewController {
 	override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch section {
 		case 0:
-			return 5
+			return 6
 		case 1:
-			return 5
+			return 6
 		default:
 			return 0
 		}
@@ -48,6 +48,8 @@ class ViewController: UITableViewController {
 				return "Draw a wave"
 			case (0, 4):
 				return "Draw stars"
+			case (0, 5):
+				return "Draw a logo"
 			case (1, 0):
 				return "Draw a star"
 			case (1, 1):
@@ -58,6 +60,8 @@ class ViewController: UITableViewController {
 				return "Draw a wave"
 			case (1, 4):
 				return "Draw stars"
+			case (1, 5):
+				return "Draw a logo"
 			default:
 				return nil
 			}
@@ -79,6 +83,8 @@ class ViewController: UITableViewController {
 				return WaveViewController()
 			case (0, 4):
 				return MultipleStarsViewController()
+			case (0, 5):
+				return LogoViewController()
 			case (1, 0):
 				return AnimatedStarViewController()
 			case (1, 1):
@@ -89,6 +95,8 @@ class ViewController: UITableViewController {
 				return AnimatedWaveViewController()
 			case (1, 4):
 				return AnimatedMultipleStarsViewController()
+			case (1, 5):
+				return AnimatedLogoViewController()
 			default:
 				return nil
 			}

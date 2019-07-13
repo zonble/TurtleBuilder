@@ -25,6 +25,20 @@ class TurtleViewController: UIViewController {
 	}
 }
 
+class LogoViewController: TurtleViewController {
+	@TurtleBuilder
+	override func builder() -> [TurtleCommand] {
+		penDown()
+		loop(20) {
+			loop(180) {
+				forward(25)
+				right(20)
+			}
+			right(18)
+		}
+	}
+}
+
 class StarViewController: TurtleViewController {
 	@TurtleBuilder
 	override func builder() -> [TurtleCommand] {

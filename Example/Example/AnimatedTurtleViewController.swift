@@ -23,12 +23,26 @@ class AnimatedTurtleViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.25) {
-			self.turtleView.animate()
+			self.turtleView.animate(showTurtle: true)
 		}
 	}
 
 	override func viewDidLayoutSubviews() {
 		self.turtleView.rebuildLayers()
+	}
+}
+
+class AnimatedLogoViewController: AnimatedTurtleViewController {
+	@TurtleBuilder
+	override func builder() -> [TurtleCommand] {
+		penDown()
+		loop(20) {
+			loop(180) {
+				forward(25)
+				right(20)
+			}
+			right(18)
+		}
 	}
 }
 
