@@ -1,7 +1,7 @@
 # TurtleBuilder
 
-[![GitHub release](https://img.shields.io/github/release/zonble/turtlebuilder.svg)]()
-![GitHub top language](https://img.shields.io/github/languages/top/zonble/turtlebuilder.svg)
+[![GitHub Release](https://img.shields.io/github/release/zonble/turtlebuilder.svg)]()
+![GitHub Top Language](https://img.shields.io/github/languages/top/zonble/turtlebuilder.svg)
 [![License](https://img.shields.io/github/license/ethanhuang13/nsattributedstringbuilder.svg)](https://github.com/zonble/turtlebuilder/blob/master/LICENSE)
 [![Twitter](https://img.shields.io/badge/Twitter-%40zonble-blue.svg)](https://twitter.com/zonble)
 
