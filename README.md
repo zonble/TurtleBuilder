@@ -9,6 +9,10 @@ TurtleBuilder is a [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphi
 
 [![TurtleBuilder Example](http://img.youtube.com/vi/mPF4nlYp-1c/0.jpg)](http://www.youtube.com/watch?v=mPF4nlYp-1c)
 
+## Why?
+
+Because it is fun!
+
 ## Requirement
 
 - Xcode 11 or above
@@ -62,7 +66,7 @@ You can use `AnimatedTurtleView` as following:
 
 
 ``` swift
-let turtleView = TurtleView(frame: self.view.bounds) {
+let turtleView = AnimatedTurtleView(frame: self.view.bounds) {
     penDown()
     loop(10) {
         left(10)
@@ -74,4 +78,4 @@ let turtleView = TurtleView(frame: self.view.bounds) {
 
 Then call `turtleView.animate()` to start the animation.
 
-Enjoy! 🐢
+Patches are welcome. Enjoy! 🐢

@@ -7,18 +7,28 @@ fileprivate protocol AnimationLooperDelegate: class {
 }
 
 fileprivate class TurtleAnimator: NSObject, CAAnimationDelegate {
+	var turtleLayer: CALayer = {
+		let layer = CATextLayer()
+		layer.bounds = CGRect(x: 0, y: 0, width: 50, height: 50)
+		layer.string = "🐢"
+		return layer
+	}()
+
 	var layers: [CAShapeLayer]
 	var index = 0
+	var showTurtle: Bool
 	weak var delegate: AnimationLooperDelegate?
 
 	deinit {
+		turtleLayer.removeFromSuperlayer()
 		self.layers.forEach { layer in
 			layer.removeAllAnimations()
 		}
 	}
 
-	init(_ layers: [CAShapeLayer]) {
+	init(_ layers: [CAShapeLayer], showTurtle: Bool = false) {
 		self.layers = layers
+		self.showTurtle = showTurtle
 		super.init()
 		if self.layers.count > 0 {
 			self.scheduleAnimation(layers[index])
@@ -29,6 +39,12 @@ fileprivate class TurtleAnimator: NSObject, CAAnimationDelegate {
 
 	public func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
 		layers[index].removeAllAnimations()
+		turtleLayer.removeAllAnimations()
+		CATransaction.begin()
+		CATransaction.disableActions()
+		turtleLayer.removeFromSuperlayer()
+		CATransaction.commit()
+
 		if index < layers.count - 1 {
 			index += 1
 			scheduleAnimation(layers[index])
@@ -36,13 +52,26 @@ fileprivate class TurtleAnimator: NSObject, CAAnimationDelegate {
 	}
 
 	func scheduleAnimation(_ layer: CAShapeLayer) {
+		let duration = 3.0 / Double(layers.count)
 		let animation = CABasicAnimation(keyPath: "strokeEnd")
 		animation.fromValue = 0.0
 		animation.toValue = 1.0
 		animation.delegate = self
-		animation.duration = 3.0 / Double(layers.count)
+		animation.duration = duration
 		layer.strokeEnd = 1.0
 		layer.add(animation, forKey: nil)
+
+		if showTurtle {
+			CATransaction.begin()
+			CATransaction.disableActions()
+			layer.addSublayer(turtleLayer)
+			CATransaction.commit()
+
+			let movingAnimation = CAKeyframeAnimation(keyPath: "position")
+			movingAnimation.path = layer.path
+			movingAnimation.duration = duration
+			turtleLayer.add(movingAnimation, forKey: nil)
+		}
 	}
 }
 
@@ -120,7 +149,7 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 
 	private var animator: TurtleAnimator?
 
-	public func animate() {
+	public func animate(showTurtle: Bool = false) {
 		CATransaction.begin()
 		CATransaction.disableActions()
 		self.shapeLayers.forEach { layer in
@@ -128,7 +157,7 @@ public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
 			layer.strokeEnd = 0
 		}
 		CATransaction.commit()
-		self.animator = TurtleAnimator(self.shapeLayers)
+		self.animator = TurtleAnimator(self.shapeLayers, showTurtle: showTurtle)
 	}
 
 	fileprivate func turtleAnimatorDidEnd(_ animationLooper: TurtleAnimator) {
