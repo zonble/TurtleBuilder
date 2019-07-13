@@ -30,14 +30,14 @@ You can use a build block to build a turtle. For example:
 
 ``` swift
 let turtle = Turtle {
-		penDown()
-		loop(9) {
-			turn(140)
-			forward(30)
-			turn(-100)
-			forward(30)
-		}
-		penUp()
+        penDown()
+        loop(9) {
+            turn(140)
+            forward(30)
+            turn(-100)
+            forward(30)
+        }
+        penUp()
 }
 ```
 
