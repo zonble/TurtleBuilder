@@ -2,7 +2,7 @@
 
 TurtleBuilder is a [turtle graphics](https://en.wikipedia.org/wiki/Turtle_graphics) made on the top of Swift's function builder. It allows you to use a [LOGO](https://en.wikipedia.org/wiki/Logo_(programming_language))-like syntax to create and draw lines in your Swift project.
 
-https://www.youtube.com/watch?v=mPF4nlYp-1c
+[![TurtleBuilder Example](http://img.youtube.com/vi/mPF4nlYp-1c/0.jpg)](http://www.youtube.com/watch?v=mPF4nlYp-1c)
 
 ## Requirement
 
@@ -48,3 +48,25 @@ TurtleBuilder provides following commands to let you control your turtle:
 - loop: Repeat running a set of commands.
 - setMacro: Set a set of commands as a macro with a given name.
 - playMacro: Play a macro. The macro needs to be set before.
+
+## Draw In Views
+
+TurtleBuilder provides two views where you can let the turtle to draw graphics. One is `TurtleView`, it renders the still lines with Quartz 2D, while another is `AnimatedTurtleView`, which creates animating layers using Core Animation.
+
+You can use `AnimatedTurtleView` as following:
+
+
+``` swift
+let turtleView = TurtleView(frame: self.view.bounds) {
+    penDown()
+    loop(10) {
+        left(10)
+        forward(10)
+    }
+    penUp()
+}
+```
+
+Then call `turtleView.animate()` to start the animation.
+
+Enjoy! 🐢
