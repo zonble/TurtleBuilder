@@ -30,16 +30,20 @@ You can use a build block to build a turtle. For example:
 
 ``` swift
 let turtle = Turtle {
-    penDown()
-    loop(10) {
-        left(10)
-        forward(10)
-    }
-    penUp()
+		penDown()
+		loop(9) {
+			turn(140)
+			forward(30)
+			turn(-100)
+			forward(30)
+		}
+		penUp()
 }
 ```
 
-Then you can get lines from the turtle, by calling `turtle.lines`.
+Then you can get lines from the turtle, by calling `turtle.lines`. If you render it, it would look like
+
+![screenshot.png](screenshot.png)
 
 ### Commands
 
