@@ -99,7 +99,7 @@ class StarAndEmitViewController: TurtleViewController {
 class WaveViewController: TurtleViewController {
 	@TurtleBuilder
 	override func builder() -> [TurtleCommand] {
-		left(180)
+		left(90)
 		forward(150)
 		right(180)
 		penDown()
@@ -134,12 +134,10 @@ class MultipleStarsViewController: TurtleViewController {
 		}
 
 		center(); resetHeading()
-		left(90)
 		forward(200)
 		playMacro("star")
 
 		center(); resetHeading()
-		left(90)
 		forward(100)
 		playMacro("star")
 
@@ -147,12 +145,12 @@ class MultipleStarsViewController: TurtleViewController {
 		playMacro("star")
 
 		center(); resetHeading()
-		right(90)
+		right(180)
 		forward(100)
 		playMacro("star")
 
 		center(); resetHeading()
-		right(90)
+		right(180)
 		forward(200)
 		playMacro("star")
 	}

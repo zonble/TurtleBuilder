@@ -7,6 +7,8 @@ public enum TurtleCommand {
 	case center
 	/// Reset the direction of the turtle.
 	case resetHeading
+	/// Set the direction of the turtle.
+	case setHeading(Int)
 	/// Pen up.
 	case penUp
 	/// Pen down.
@@ -34,6 +36,9 @@ public func center()-> TurtleCommand { .center }
 /// Reset the direction of the turtle.
 public func resetHeading()-> TurtleCommand { .resetHeading }
 
+/// Set the direction of the turtle.
+public func setHeading(_ degree: Int)-> TurtleCommand { .setHeading(degree) }
+
 /// Move the turtle without drawing a line.
 public func penUp()-> TurtleCommand { .penUp }
 
@@ -44,25 +49,22 @@ public func penDown()-> TurtleCommand { .penDown }
 /// - Parameter angle: The angle.
 public func left(_ angle: Int) -> TurtleCommand { .turn(angle) }
 
-/// Turn left to the given angle.
-/// - Parameter angle: The angle.
-public func lt(_ angle: Int) -> TurtleCommand { .turn(angle) }
+/// An alias of `left`
+let lt = left
 
 /// Turn right to the given angle.
 /// - Parameter angle: The angle.
 public func right(_ angle: Int) -> TurtleCommand { .turn(angle * -1) }
 
-/// Turn left to the given angle.
-/// - Parameter angle: The angle.
-public func rt(_ angle: Int) -> TurtleCommand { .turn(angle * -1) }
+/// An alias of `right`
+let rt = right
 
 /// Move forward.
 /// - Parameter length: How long do we move.
 public func forward(_ length:Int) -> TurtleCommand { .forward(length) }
 
-/// Move forward.
-/// - Parameter length: How long do we move.
-public func fd(_ length:Int) -> TurtleCommand { .forward(length) }
+/// An alias of `forward`.
+let fd = forward
 
 /// Run a loop.
 /// - Parameter repeatCount: How many times do we repeat.
@@ -70,6 +72,9 @@ public func fd(_ length:Int) -> TurtleCommand { .forward(length) }
 public func loop(_ repeatCount: Int, @TurtleBuilder builder:()-> [TurtleCommand]) -> TurtleCommand {
 	.loop(repeatCount, builder())
 }
+
+/// An alias of `loop`.
+let `repeat` = loop
 
 /// Set a macro.
 /// - Parameter name: Name of the macro.
@@ -149,7 +154,9 @@ extension Turtle {
 			}
 			lastPoint = newPoint
 		case .resetHeading:
-			radian = 0
+			radian = Turtle.deg2rad(Double(90))
+		case .setHeading(let degree):
+			radian = Turtle.deg2rad(Double(90 + degree))
 		case .forward(let length):
 			let x = cos(radian) * Double(length)
 			let y = sin(radian) * Double(length)
@@ -192,7 +199,7 @@ extension Turtle {
 
 	private func complie() -> [[TurtlePoint]] {
 		var lines:[[TurtlePoint]] = []
-		var radian: Double = 0
+		var radian: Double = Turtle.deg2rad(Double(90))
 		var lastPoint = (Double(0), Double(0))
 		var isPenDown: Bool = false
 		var macros = [String:[TurtleCommand]]()
