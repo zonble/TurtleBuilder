@@ -32,9 +32,9 @@ You can use a build block to build a turtle. For example:
 let turtle = Turtle {
         penDown()
         loop(9) {
-            turn(140)
+            left(140)
             forward(30)
-            turn(-100)
+            left(-100)
             forward(30)
         }
         penUp()
@@ -56,7 +56,6 @@ TurtleBuilder provides following commands to let you control your turtle:
 - penDown: After the command is called, the turtle draw a line when it is moving.
 - left: Turn the turtle to left with a given degree.
 - right: Turn the turtle to right with a given degree.
-- turn: An alias of `left`.
 - forward: Ask the turtle to move forward.
 - loop: Repeat running a set of commands.
 - setMacro: Set a set of commands as a macro with a given name.
@@ -88,7 +87,7 @@ If you use variables in the commands within the `loop` command, we only take the
 
 ``` swift
 loop(5) {
-   move(Int(arc4random() % 50))
+   left(Int(arc4random() % 50))
    forward(Int(arc4random() % 50))
 }
 ```

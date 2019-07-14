@@ -123,8 +123,8 @@ final class TurtleBuilderTests: XCTestCase {
 
 	func testTurn2() {
 		let t = Turtle {
-			turn(20)
-			turn(-20)
+		left(20)
+		left(-20)
 			penDown()
 			forward(10)
 			penUp()

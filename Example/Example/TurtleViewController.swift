@@ -48,9 +48,9 @@ class StarViewController: TurtleViewController {
 		left(90)
 		penDown()
 		loop(9) {
-			turn(140)
+			left(140)
 			forward(30)
-			turn(-100)
+			left(-100)
 			forward(30)
 		}
 		penUp()
@@ -63,7 +63,7 @@ class EmitViewController: TurtleViewController {
 		loop(18) {
 			center()
 			penDown()
-			turn(20)
+			left(20)
 			forward(100)
 			penUp()
 		}
@@ -79,9 +79,9 @@ class StarAndEmitViewController: TurtleViewController {
 		left(90)
 		penDown()
 		loop(9) {
-			turn(140)
+			left(140)
 			forward(30)
-			turn(-100)
+			left(-100)
 			forward(30)
 		}
 		penUp()
@@ -89,7 +89,7 @@ class StarAndEmitViewController: TurtleViewController {
 		loop(18) {
 			center()
 			penDown()
-			turn(20)
+			left(20)
 			forward(100)
 			penUp()
 		}
@@ -125,20 +125,20 @@ class MultipleStarsViewController: TurtleViewController {
 			left(90)
 			penDown()
 			loop(9) {
-				turn(140)
+				left(140)
 				forward(30)
-				turn(-100)
+				left(-100)
 				forward(30)
 			}
 			penUp()
 		}
 
-		center(); resetDirection()
+		center(); resetHeading()
 		left(90)
 		forward(200)
 		playMacro("star")
 
-		center(); resetDirection()
+		center(); resetHeading()
 		left(90)
 		forward(100)
 		playMacro("star")
@@ -146,16 +146,17 @@ class MultipleStarsViewController: TurtleViewController {
 		center()
 		playMacro("star")
 
-		center(); resetDirection()
+		center(); resetHeading()
 		right(90)
 		forward(100)
 		playMacro("star")
 
-		center(); resetDirection()
+		center(); resetHeading()
 		right(90)
 		forward(200)
 		playMacro("star")
 	}
 }
+
 
 

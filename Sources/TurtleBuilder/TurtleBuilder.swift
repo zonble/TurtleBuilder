@@ -6,7 +6,7 @@ public enum TurtleCommand {
 	/// Center the turtle.
 	case center
 	/// Reset the direction of the turtle.
-	case resetDirection
+	case resetHeading
 	/// Pen up.
 	case penUp
 	/// Pen down.
@@ -32,7 +32,7 @@ public func pass()-> TurtleCommand { .pass }
 public func center()-> TurtleCommand { .center }
 
 /// Reset the direction of the turtle.
-public func resetDirection()-> TurtleCommand { .resetDirection }
+public func resetHeading()-> TurtleCommand { .resetHeading }
 
 /// Move the turtle without drawing a line.
 public func penUp()-> TurtleCommand { .penUp }
@@ -40,21 +40,29 @@ public func penUp()-> TurtleCommand { .penUp }
 /// Move the turtle with drawing a line.
 public func penDown()-> TurtleCommand { .penDown }
 
-/// Turn to the given angle. It works as `left`.
-/// - Parameter angle: The angle.
-public func turn(_ angle: Int) -> TurtleCommand { .turn(angle) }
-
 /// Turn left to the given angle.
 /// - Parameter angle: The angle.
 public func left(_ angle: Int) -> TurtleCommand { .turn(angle) }
+
+/// Turn left to the given angle.
+/// - Parameter angle: The angle.
+public func lt(_ angle: Int) -> TurtleCommand { .turn(angle) }
 
 /// Turn right to the given angle.
 /// - Parameter angle: The angle.
 public func right(_ angle: Int) -> TurtleCommand { .turn(angle * -1) }
 
+/// Turn left to the given angle.
+/// - Parameter angle: The angle.
+public func rt(_ angle: Int) -> TurtleCommand { .turn(angle * -1) }
+
 /// Move forward.
 /// - Parameter length: How long do we move.
 public func forward(_ length:Int) -> TurtleCommand { .forward(length) }
+
+/// Move forward.
+/// - Parameter length: How long do we move.
+public func fd(_ length:Int) -> TurtleCommand { .forward(length) }
 
 /// Run a loop.
 /// - Parameter repeatCount: How many times do we repeat.
@@ -140,7 +148,7 @@ extension Turtle {
 				}
 			}
 			lastPoint = newPoint
-		case .resetDirection:
+		case .resetHeading:
 			radian = 0
 		case .forward(let length):
 			let x = cos(radian) * Double(length)
