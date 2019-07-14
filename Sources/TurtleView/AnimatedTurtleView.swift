@@ -76,8 +76,8 @@ fileprivate class TurtleAnimator: NSObject, CAAnimationDelegate {
 }
 
 public class AnimatedTurtleView: UIView, AnimationLooperDelegate {
+	private var turtle: Turtle
 
-	public private(set) var turtle: Turtle
 	public var strokeColor: UIColor = UIColor.green {
 		didSet {
 			self.shapeLayers.forEach { layer in

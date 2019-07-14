@@ -8,8 +8,9 @@ import UIKit
 import TurtleBuilder
 
 public class TurtleView: PlatformView {
-	var turtle: Turtle
-	func update() {
+	private var turtle: Turtle
+
+	private func update() {
 		#if os(macOS)
 		self.setNeedsDisplay(self.bounds)
 		#endif
@@ -17,9 +18,11 @@ public class TurtleView: PlatformView {
 		self.setNeedsDisplay()
 		#endif
 	}
-	var strokeColor: PlatformColor = PlatformColor.green {
+
+	public var strokeColor: PlatformColor = PlatformColor.green {
 		didSet { update() }
 	}
+
 	public var fillColor: UIColor = UIColor.clear {
 		didSet { update() }
 	}

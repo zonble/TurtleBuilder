@@ -1,5 +1,6 @@
 import Foundation
 
+/// The commands for `Turtle`.
 public enum TurtleCommand {
 	/// Does nothing.
 	case pass
@@ -9,6 +10,8 @@ public enum TurtleCommand {
 	case resetHeading
 	/// Set the direction of the turtle.
 	case setHeading(Int)
+	/// Set the position of the turtle.
+	case setPoistion(Int, Int)
 	/// Pen up.
 	case penUp
 	/// Pen down.
@@ -36,8 +39,17 @@ public func center()-> TurtleCommand { .center }
 /// Reset the direction of the turtle.
 public func resetHeading()-> TurtleCommand { .resetHeading }
 
+/// An alias of `resetHeading`
+let resetH = resetHeading
+
 /// Set the direction of the turtle.
 public func setHeading(_ degree: Int)-> TurtleCommand { .setHeading(degree) }
+
+/// An alias of `setHeading`
+let setH = setHeading
+
+/// Set the position of the turtle.
+public func setPosition(_ x: Int, _ y: Int)-> TurtleCommand { .setPoistion(x, y) }
 
 /// Move the turtle without drawing a line.
 public func penUp()-> TurtleCommand { .penUp }
@@ -90,6 +102,7 @@ public func playMacro(_ name: String) -> TurtleCommand {
 }
 
 @_functionBuilder
+/// Function builder for `Turtle`
 public struct TurtleBuilder {
 
 	public static func buildIf(_ commands: [TurtleCommand]?) -> TurtleCommand {
@@ -112,19 +125,22 @@ public struct TurtleBuilder {
 	}
 }
 
+/// The turtle that draws graphics.
 public class Turtle {
 	private var commands: [TurtleCommand]
 
+	/// Creates a new instance.
+	/// - Parameter builder: The commands sent to the turtle.
 	public init(@TurtleBuilder builder:()-> [TurtleCommand]) {
 		self.commands = builder()
 	}
 
-	public lazy var lines = self.complie()
+	public private (set) lazy var lines = self.complie()
 }
 
 extension Turtle {
 
-	static func deg2rad(_ number: Double) -> Double {
+	private static func deg2rad(_ number: Double) -> Double {
 		return number * .pi / 180
 	}
 
@@ -157,6 +173,18 @@ extension Turtle {
 			radian = Turtle.deg2rad(Double(90))
 		case .setHeading(let degree):
 			radian = Turtle.deg2rad(Double(90 + degree))
+		case .setPoistion(let x, let y):
+			let newPoint = (Double(x), Double(y))
+			if lastPoint == newPoint {
+				return
+			}
+			if isPenDown {
+				if var lastSequence = lines.last {
+					lastSequence.append(newPoint)
+					lines[lines.count - 1] = lastSequence
+				}
+			}
+			lastPoint = newPoint
 		case .forward(let length):
 			let x = cos(radian) * Double(length)
 			let y = sin(radian) * Double(length)

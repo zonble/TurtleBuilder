@@ -51,13 +51,14 @@ TurtleBuilder provides following commands to let you control your turtle:
 
 - pass: The command does nothing.
 - center: Move the turtle to the center of the canvas.
-- resetDirection: Resets the direction of the turtle. The turtle is facing to the right side by default.
+- resetHeading: Reset the direction of the turtle. The turtle is facing to the top by default.
+- setHeading: Set the direction of the turtle..
 - penUp: After the command is called, the turtle moves without drawing a line.
 - penDown: After the command is called, the turtle draw a line when it is moving.
-- left: Turn the turtle to left with a given degree.
-- right: Turn the turtle to right with a given degree.
-- forward: Ask the turtle to move forward.
-- loop: Repeat running a set of commands.
+- left | lt: Turn the turtle to left with a given degree.
+- right | rt: Turn the turtle to right with a given degree.
+- forward | fd: Ask the turtle to move forward.
+- loop | repeat: Repeat running a set of commands.
 - setMacro: Set a set of commands as a macro with a given name.
 - playMacro: Play a macro. The macro needs to be set before.
 
