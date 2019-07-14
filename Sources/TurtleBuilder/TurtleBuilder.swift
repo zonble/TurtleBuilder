@@ -186,8 +186,15 @@ extension Turtle {
 			}
 			lastPoint = newPoint
 		case .forward(let length):
-			let x = cos(radian) * Double(length)
-			let y = sin(radian) * Double(length)
+			var x = cos(radian)
+			var y = sin(radian)
+			if abs(x) == 1.0 {
+				y = 0
+			} else if abs(y) == 1.0 {
+				x = 0
+			}
+			x = x * Double(length)
+			y = y * Double(length)
 			let newPoint = (lastPoint.0 + x, lastPoint.1 +  y)
 			if isPenDown {
 				if var lastSequence = lines.last {
@@ -242,3 +249,4 @@ extension Turtle {
 	}
 
 }
+
