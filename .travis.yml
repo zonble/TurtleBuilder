@@ -2,6 +2,6 @@ language: swift
 osx_image: xcode11
 script: 
   - swift package generate-xcodeproj
-  - xcodebuild -destination 'platform=iOS Simulator,name=iPhone Xʀ,OS=13.0' test
+  - xcodebuild -scheme TurtleBuilder-Package -destination 'platform=iOS Simulator,name=iPhone Xʀ,OS=13.0' -enableCodeCoverage YES build test
 after_success:
   - bash <(curl -s https://codecov.io/bash)
