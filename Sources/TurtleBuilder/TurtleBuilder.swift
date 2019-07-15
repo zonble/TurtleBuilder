@@ -40,13 +40,13 @@ public func center()-> TurtleCommand { .center }
 public func resetHeading()-> TurtleCommand { .resetHeading }
 
 /// An alias of `resetHeading`
-let resetH = resetHeading
+public let resetH = resetHeading
 
 /// Set the direction of the turtle.
 public func setHeading(_ degree: Int)-> TurtleCommand { .setHeading(degree) }
 
 /// An alias of `setHeading`
-let setH = setHeading
+public let setH = setHeading
 
 /// Set the position of the turtle.
 public func setPosition(_ x: Int, _ y: Int)-> TurtleCommand { .setPoistion(x, y) }
@@ -62,21 +62,21 @@ public func penDown()-> TurtleCommand { .penDown }
 public func left(_ angle: Int) -> TurtleCommand { .turn(angle) }
 
 /// An alias of `left`
-let lt = left
+public let lt = left
 
 /// Turn right to the given angle.
 /// - Parameter angle: The angle.
 public func right(_ angle: Int) -> TurtleCommand { .turn(angle * -1) }
 
 /// An alias of `right`
-let rt = right
+public let rt = right
 
 /// Move forward.
 /// - Parameter length: How long do we move.
 public func forward(_ length:Int) -> TurtleCommand { .forward(length) }
 
 /// An alias of `forward`.
-let fd = forward
+public let fd = forward
 
 /// Run a loop.
 /// - Parameter repeatCount: How many times do we repeat.
@@ -86,7 +86,7 @@ public func loop(_ repeatCount: Int, @TurtleBuilder builder:()-> [TurtleCommand]
 }
 
 /// An alias of `loop`.
-let `repeat` = loop
+public let `repeat` = loop
 
 /// Set a macro.
 /// - Parameter name: Name of the macro.
