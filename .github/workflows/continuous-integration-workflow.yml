@@ -4,7 +4,7 @@ on: [push]
 jobs:
   build:
     name: Build
-    runs-on: macOS-10.14
+    runs-on: macOS-latest
     steps:
       - name: Generate Xcode Project
         run: swift package generate-xcodeproj
