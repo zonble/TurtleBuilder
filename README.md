@@ -45,7 +45,7 @@ let turtle = Turtle {
 
 Then you can get lines from the turtle, by calling `turtle.lines`. If you render it, it would look like
 
-![screenshot.png](screenshot.png)
+![screenshot.png](https://raw.githubusercontent.com/zonble/TurtleBuilder/master/screenshot.png)
 
 ### Commands
 
