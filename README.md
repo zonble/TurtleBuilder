@@ -1,5 +1,6 @@
 # TurtleBuilder
 
+[![Actions Status](https://github.com/zonble/TurtleBuilder/workflows/Build/badge.svg)](https://github.com/zonble/TurtleBuilder/actions)
 [![Build](https://travis-ci.org/zonble/TurtleBuilder.svg?branch=master)](https://travis-ci.org/zonble/TurtleBuilder)
 [![GitHub Release](https://img.shields.io/github/release/zonble/turtlebuilder.svg)]()
 ![GitHub Top Language](https://img.shields.io/github/languages/top/zonble/turtlebuilder.svg)
