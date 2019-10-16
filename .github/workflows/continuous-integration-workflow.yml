@@ -12,4 +12,4 @@ jobs:
       - name: Generate Xcode Project
         run: swift package generate-xcodeproj
       - name: Swift test
-        run: xcodebuild -scheme TurtleBuilder-Package -destination 'platform=iOS Simulator,name=iPhone Xʀ,OS=13.0' -enableCodeCoverage YES build test
+        run: xcodebuild -scheme TurtleBuilder-Package -destination 'platform=iOS Simulator,name=iPhone 11,OS=13.0' -enableCodeCoverage YES build test
