@@ -152,7 +152,7 @@ final class TurtleBuilderTests: XCTestCase {
 	static var allTests = [
 		("testTurtleEmpty", testTurtleEmpty),
 		("testTurtleWithOneLine", testTurtleWithOneLine),
-		//		("testTurtleIf", testTurtleIf),
+		("testTurtleIf", testTurtleIf),
 		("testTurtleLoop1", testTurtleLoop1),
 		("testTurtleLoop2", testTurtleLoop2),
 		("testTurtleLoopWithCenter", testTurtleLoopWithCenter),
@@ -161,4 +161,5 @@ final class TurtleBuilderTests: XCTestCase {
 		("testMacro", testMacro),
 	]
 }
+
 
