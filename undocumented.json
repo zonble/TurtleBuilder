@@ -1,0 +1,54 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder/Sources/TurtleBuilder/TurtleBuilder.swift",
+      "line": 31,
+      "symbol": "TurtlePoint",
+      "symbol_kind": "source.lang.swift.decl.typealias",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder/Sources/TurtleBuilder/TurtleBuilder.swift",
+      "line": 106,
+      "symbol": "TurtleBuilder",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder/Sources/TurtleBuilder/TurtleBuilder.swift",
+      "line": 108,
+      "symbol": "TurtleBuilder.buildIf(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder/Sources/TurtleBuilder/TurtleBuilder.swift",
+      "line": 115,
+      "symbol": "TurtleBuilder.buildEither(first:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder/Sources/TurtleBuilder/TurtleBuilder.swift",
+      "line": 119,
+      "symbol": "TurtleBuilder.buildEither(second:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder/Sources/TurtleBuilder/TurtleBuilder.swift",
+      "line": 123,
+      "symbol": "TurtleBuilder.buildBlock(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder/Sources/TurtleBuilder/TurtleBuilder.swift",
+      "line": 138,
+      "symbol": "Turtle.lines",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/runner/runners/2.165.2/work/TurtleBuilder/TurtleBuilder"
+}
