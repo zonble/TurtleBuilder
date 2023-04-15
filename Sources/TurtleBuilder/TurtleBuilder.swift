@@ -11,7 +11,7 @@ public enum TurtleCommand {
 	/// Set the direction of the turtle.
 	case setHeading(Int)
 	/// Set the position of the turtle.
-	case setPoistion(Int, Int)
+	case setPosition(Int, Int)
 	/// Pen up.
 	case penUp
 	/// Pen down.
@@ -49,7 +49,7 @@ public func setHeading(_ degree: Int)-> TurtleCommand { .setHeading(degree) }
 public let setH = setHeading
 
 /// Set the position of the turtle.
-public func setPosition(_ x: Int, _ y: Int)-> TurtleCommand { .setPoistion(x, y) }
+public func setPosition(_ x: Int, _ y: Int)-> TurtleCommand { .setPosition(x, y) }
 
 /// Move the turtle without drawing a line.
 public func penUp()-> TurtleCommand { .penUp }
@@ -173,7 +173,7 @@ extension Turtle {
 			radian = Turtle.deg2rad(Double(90))
 		case .setHeading(let degree):
 			radian = Turtle.deg2rad(Double(90 + degree))
-		case .setPoistion(let x, let y):
+		case .setPosition(let x, let y):
 			let newPoint = (Double(x), Double(y))
 			if lastPoint == newPoint {
 				return
